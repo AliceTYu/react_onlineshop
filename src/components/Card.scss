@@ -6,6 +6,45 @@
     border-radius: 30px;
     border: 1px solid var(--border-text-color);
     background: var(--bg-color);
+    
+    transition: .5s;
+
+    &:hover{
+        transform: translateY(-5px);
+        box-shadow: 0px 14px 30px 0px rgba(0, 0, 0, 0.05);
+    }
+
+    &__like{
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        top: 5px;
+        left: 5px;
+        border: 1px solid var(--border-text-color);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--bg-color);
+        
+        color: var(--border-text-color);
+        z-index: 7;
+        cursor: pointer;
+        transition: .5s;
+
+        &:hover{
+            opacity: .8;
+        }
+
+        &.active{
+            color: #ffffff;
+            background: linear-gradient(#ffcbcb, #ed5ca2);
+        }
+
+        & i{
+            font-size: 18px;
+        }
+    }
 
     &__image{
         position: relative;
@@ -90,7 +129,7 @@
         line-height: 1.2;
     }
 
-    &__right{
+    &__btn{
         width: 32px;
         height: 32px;
         border: 1px solid var(--border-text-color);
@@ -99,11 +138,18 @@
         align-items: center;
         justify-content: center;
         color: var(--border-text-color);
-    }
-
-    &__btn{
-        background: none;
-        border: none;
+        background-color: var(--bg-color);
+        
         cursor: pointer;
+        transition: .5s;
+
+        &:hover{
+            opacity: .8;
+        }
+
+        &.active{
+            color: #ffffff;
+            background: linear-gradient(#9ae198, #069009);
+        }
     }
 }

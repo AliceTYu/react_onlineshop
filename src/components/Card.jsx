@@ -4,6 +4,9 @@ import './Card.scss'
 function Card() {
   return <article className="card">
     <div className="card__image">
+      <button className="card__like">
+        <i class='bx bx-heart' ></i>
+      </button>
         <div className="card__box">
           <img className="card__image-pic" src="./../../image/img01.jpeg" alt="book" />
         </div>
@@ -16,9 +19,7 @@ function Card() {
               <div className="card__price">684 руб.</div>
           </div>
           <button className="card__btn">
-            <div className="card__right">
-                <i className='bx bx-plus-medical' ></i>
-            </div>
+            <i className='bx bx-plus-medical' ></i>
           </button>
       </div>
     </div>
