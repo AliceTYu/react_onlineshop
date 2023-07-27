@@ -59,7 +59,7 @@
         font-size: 14px;
         font-weight: 600;
         line-height: 1.2;
-        color:  var(--text-color-gray);
+        color:  var(--second-text-color);
     }
 
     &__link{
@@ -73,7 +73,7 @@
         transition: .5s;
 
         &:hover{
-            opacity: .8;
+            color: var(--icon-hover);
         }
     }
 }

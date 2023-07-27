@@ -17,16 +17,16 @@ function Content() {
             </div>
             <ul className="content__list">
               <li className="content__item">
-                <Card />
+                <Card title='Игра престолов.' price='865'/>
               </li>
               <li className="content__item">
-                <Card />
+                <Card title='Битва королей.' price='785'/>
               </li>
               <li className="content__item">
-                <Card />
+                <Card title='Буря мечей' price='904'/>
               </li>
               <li className="content__item">
-                <Card />
+                <Card title='Пир стервятников' price='836'/>
               </li>
             </ul>
         </div>

@@ -34,6 +34,13 @@ function Header() {
                         <a className="header__link" href="#"><i class='bx bx-user-circle'></i></a>
                         </div>
                     </li>
+                    <li className="header__item">
+                        <div className="header__icons">
+                        <a className="header__link" href="#"><i class='bx bx-sun' ></i>
+                        {/* <i class='bx bx-moon' ></i> */}
+                        </a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
