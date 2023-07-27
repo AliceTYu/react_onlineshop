@@ -1,0 +1,109 @@
+.card{
+    position: relative;
+
+    height: 100%;
+
+    border-radius: 30px;
+    border: 1px solid var(--border-text-color);
+    background: var(--bg-color);
+
+    &__image{
+        position: relative;
+        margin: 20px 30px 0;
+
+        max-width: rem(392px);
+        margin-bottom: 0;
+
+        border-radius: 15px;
+
+        overflow: hidden;
+
+        &::before{
+            content: "";
+
+            $card-width: 300px;
+            $card-height: 420px;
+            padding-top: percentage($card-height / $card-width);
+
+            display: block;
+        }
+
+        &-pic{
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+            font-family: "object-fit: cover";
+        }
+    }
+
+    &__box {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    &__body{
+        position: static;
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        max-height: 100%;
+
+        padding: 0 20px 20px;
+    }
+
+    &__title{
+        font-size: 14px;
+        line-height: 1.2;
+        margin-top: 14px;
+        margin-bottom: 14px;
+    }
+
+    &__block{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        column-gap: 10px;
+    }
+
+    &__text{
+        font-size: 11px;
+        font-weight: 500;
+        line-height: 1.2;
+        text-transform: uppercase;
+        color: var(--second-text-color);
+    }
+
+    &__price{
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.2;
+    }
+
+    &__right{
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--border-text-color);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--border-text-color);
+    }
+
+    &__btn{
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+}

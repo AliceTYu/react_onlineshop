@@ -1,0 +1,72 @@
+@import 'reset-css';
+
+* {
+    box-sizing: border-box;
+    
+    -webkit-tap-highlight-color: transparent;
+
+    &::before,
+    &::after {
+        box-sizing: border-box;
+    }
+}
+
+:root {
+	--text-color: #000000;
+	--second-text-color: #9D9D9D;
+	--border-text-color: #dadada;
+	--text-color-gray: #5C5C5C;
+	--bg-color: #ffffff;
+	--second-bg-color: #e7f6ff;
+}
+
+html {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 100%;
+
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+body {
+    padding: 0;
+    margin: 0;
+
+    text-rendering: optimizeLegibility;
+}
+
+// ===============================
+.wrapper {
+	display: flex;
+	flex-direction: column;
+
+	min-height: 100vh;
+
+	&__header{
+		position: fixed;
+		z-index: 99;
+		top: 0;
+		right: 0;
+		left: 0;
+		flex-shrink: 0;
+	}
+
+	&__content{
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
+
+		margin-top: 128px;
+	}
+}
+
+.container{
+    width: 100%;
+	$width-container: 900px;
+	$gap-container: 20px;
+    max-width: $width-container + 2 * $gap-container;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: $gap-container;
+    padding-left: $gap-container;
+}
