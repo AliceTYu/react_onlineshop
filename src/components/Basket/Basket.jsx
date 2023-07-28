@@ -2,19 +2,20 @@ import React from "react";
 import './Basket.scss';
 import Cart from "./Cart/Cart";
 
-function Basket(props) {
+function Basket({onClose, cartItems}) {
   return <div className="basket">
     <div className="container">
         <div className="basket__content">
                 <div className="basket__title">Корзина 
-                    <button className="basket__link" onClick={props.onClose}>
+                    <button className="basket__link" onClick={onClose}>
                         <i class='bx bx-x'></i>
                     </button>
                 </div>
                 
                 <ul className="basket__list">
-                    <li className="basket__item"><Cart/></li>
-                    <li className="basket__item"><Cart/></li>
+                    {cartItems.map((val) => (
+                        <li className="basket__item"><Cart title={val.title} price={val.price} imgUrl={val.imgUrl}/></li>
+                    ))}
                 </ul>
             <div className="basket__botton">
                 <div className="basket__block">

@@ -5,6 +5,7 @@ import Header from "./components/Header/Header";
 
 function App() {
   const [cartOpened, setCartOpened] = React.useState(false)
+  const [cartItems, setCartItems] = React.useState([])
   const [items, setItems] = React.useState([])
 
   React.useEffect(() => {
@@ -15,13 +16,13 @@ function App() {
 
   return (
     <div className="wrapper">
-      {cartOpened && <Basket onClose={() => setCartOpened(false)}/>}
+      {cartOpened && <Basket cartItems={cartItems} onClose={() => setCartOpened(false)}/>}
 
       <div className="wrapper__header">
         <Header onClickCart={() => setCartOpened(true)}/>
       </div>
       <div className="wrapper__content">
-        <Content items={items}/>
+        <Content items={items} setCartItems={setCartItems} cartItems={cartItems}/>
       </div>
     </div>
   );

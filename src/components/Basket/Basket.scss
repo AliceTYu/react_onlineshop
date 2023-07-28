@@ -48,6 +48,7 @@
 
     &__list{
         overflow: auto;
+        overflow-x: hidden;
         flex: 1;
     }
 

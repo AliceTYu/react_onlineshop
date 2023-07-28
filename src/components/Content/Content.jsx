@@ -5,6 +5,12 @@ import Card from "./Card/Card";
 const arrBooks = []
 
 function Content(props) {
+  const onAddToCart = (obj) => {
+    props.setCartItems([...props.cartItems, obj])
+  }
+
+  console.log(props.cartItems)
+
   return <main className="content">
     <div className="container">
         <div className="content__wrap">
@@ -20,7 +26,7 @@ function Content(props) {
             <ul className="content__list">              
               {props.items.map(val => (
                 <li className="content__item">
-                  <Card title={val.name} price={val.price} imgUrl={val.imgUrl} />
+                  <Card title={val.name} price={val.price} imgUrl={val.imgUrl} onPlus={(obj) => onAddToCart(obj)} onLike={() => console.log("like")}/>
                 </li>                
               ))}
             </ul>

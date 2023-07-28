@@ -1,14 +1,14 @@
 import React from "react";
 import './Cart.scss';
 
-function Cart() {
+function Cart(props) {
   return <article className="cart">
     <div className="cart__image">
-        <img src="./../../image/img01.jpeg" alt="" />
+        <img src={props.imgUrl} alt="item" />
     </div>
     <div className="cart__body">
-        <div className="cart__title">Игра престолов. Цикл "Песнь льда и огня"</div>
-        <div className="cart__text">684 руб.</div>
+        <div className="cart__title">{props.title}</div>
+        <div className="cart__text">{props.price} руб.</div>
     </div>
     <button className="cart__btn">
         <i class='bx bx-x' ></i>
