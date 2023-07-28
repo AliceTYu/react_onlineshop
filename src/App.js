@@ -1,6 +1,6 @@
-import Basket from "./components/Basket";
-import Content from "./components/Content";
-import Header from "./components/Header";
+import Basket from "./components/Basket/Basket";
+import Content from "./components/Content/Content";
+import Header from "./components/Header/Header";
 
 function App() {
   return (

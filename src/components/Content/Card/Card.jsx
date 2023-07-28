@@ -8,7 +8,7 @@ function Card(props) {
         <i class='bx bx-heart' ></i>
       </button>
         <div className="card__box">
-          <img className="card__image-pic" src="./../../image/img01.jpeg" alt="book" />
+          <img className="card__image-pic" src={props.imgUrl} alt="book" />
         </div>
     </div>
     <div className="card__body">
@@ -18,7 +18,7 @@ function Card(props) {
               <div className="card__text">Цена:</div>
               <div className="card__price">{props.price} руб.</div>
           </div>
-          <button className="card__btn">
+          <button className="card__btn" onClick={props.onClick}>
             <i className='bx bx-plus-medical' ></i>
           </button>
       </div>

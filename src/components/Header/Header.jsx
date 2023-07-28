@@ -1,5 +1,4 @@
 import React from "react";
-// import logoImg from './image/logo.png';
 import './Header.scss'
 
 function Header() {

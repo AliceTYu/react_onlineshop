@@ -1,6 +1,6 @@
 import React from "react";
 import './Basket.scss';
-import Cart from "./Cart";
+import Cart from "./Cart/Cart";
 
 function Basket() {
   return <div className="basket">

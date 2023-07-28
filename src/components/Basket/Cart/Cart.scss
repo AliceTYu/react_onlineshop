@@ -44,11 +44,11 @@
         &:hover{
             opacity: .8;
             color: var(--bg-color);
-            background-color: #e93c55;
+            background-color: var(--icon-hover);
         }
 
         &.active{
-            color: #ffffff;
+            color: var(--bg-color);
             background: linear-gradient(#ff829d, #af061f);
         }
     }
