@@ -1,7 +1,7 @@
 import React from "react";
 import './Header.scss'
 
-function Header() {
+function Header(props) {
   return <header className="header">
     <div className="container">
         <div className="header__wrap">
@@ -18,10 +18,10 @@ function Header() {
             <div className="header__info">
                 <ul className="header__list">
                     <li className="header__item">
-                        <a href="#" className="header__link">
+                        <button className="header__link" onClick={props.onClickCart}>
                             <div><i class='bx bxs-cart'></i></div>
                             <span className="header__price">1205 руб.</span>
-                        </a>
+                        </button>
                     </li>
                     <li className="header__item">
                         <div className="header__icons">

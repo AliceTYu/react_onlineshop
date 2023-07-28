@@ -14,14 +14,6 @@ const arrBooks = [
 ]
 
 function Content() {
-  const onClickButton = () => {
-    console.log('add')
-  }
-
-  const onClickLikeButton = () => {
-    console.log('like')
-  }
-
   return <main className="content">
     <div className="container">
         <div className="content__wrap">
@@ -37,7 +29,7 @@ function Content() {
             <ul className="content__list">              
               {arrBooks.map(val => (
                 <li className="content__item">
-                  <Card title={val.name} price={val.price} imgUrl={val.imgUrl} onClickAdd={() => onClickButton()} onClickLike={() =>  onClickLikeButton()}/>
+                  <Card title={val.name} price={val.price} imgUrl={val.imgUrl} />
                 </li>                
               ))}
             </ul>

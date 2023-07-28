@@ -7,8 +7,6 @@
     left: 0;
     z-index: 101;
 
-    display: none;
-
     &__content{
         position: absolute;
         display: flex;
@@ -38,6 +36,9 @@
         color: var(--text-color);
         font-size: 30px;
         transition: .5s;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
 
 
         &:hover{

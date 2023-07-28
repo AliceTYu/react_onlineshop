@@ -70,6 +70,9 @@
         column-gap: 15px;
         color: var(--second-text-color);
         text-decoration: none;
+        border: none;
+        background-color: transparent;
+        cursor: pointer;
         transition: .5s;
 
         &:hover{

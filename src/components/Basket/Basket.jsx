@@ -2,14 +2,14 @@ import React from "react";
 import './Basket.scss';
 import Cart from "./Cart/Cart";
 
-function Basket() {
+function Basket(props) {
   return <div className="basket">
     <div className="container">
         <div className="basket__content">
                 <div className="basket__title">Корзина 
-                    <a className="basket__link" href="#">
-                    <i class='bx bx-x'></i>
-                    </a>
+                    <button className="basket__link" onClick={props.onClose}>
+                        <i class='bx bx-x'></i>
+                    </button>
                 </div>
                 
                 <ul className="basket__list">
