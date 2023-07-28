@@ -32,14 +32,10 @@
         cursor: pointer;
         transition: .5s;
 
-        &:hover{
-            color: var(--bg-color);
-            background-color: var(--icon-like-hover);
-        }
-
         &.active{
             color: var(--bg-color);
-            background: linear-gradient(#ffcbcb, var(--icon-like-hover));
+            background-color: var(--icon-like-hover);
+            border: none;
         }
 
         & i{
@@ -151,15 +147,13 @@
         cursor: pointer;
         transition: .5s;
 
-        &:hover{
-            opacity: .8;
-            color: var(--bg-color);
-            background-color: var(--icon-plus-hover);
+        & .size{
+            font-size: 16px;
         }
 
         &.active{
             color: var(--bg-color);
-            background: linear-gradient(var(--icon-plus-hover), #069009);
+            background-color: var(--icon-plus-hover);
         }
     }
 }

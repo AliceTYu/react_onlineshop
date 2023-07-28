@@ -15,14 +15,12 @@ const arrBooks = [
 
 function Content() {
   const onClickButton = () => {
-    alert('add')
+    console.log('add')
   }
 
-  // const onClickLikeButton = () => {
-  //   const iconLike = document.querySelector('.card__like')
-  //   iconLike.classList.add('active')
-  //   // alert('like')
-  // }
+  const onClickLikeButton = () => {
+    console.log('like')
+  }
 
   return <main className="content">
     <div className="container">
@@ -39,7 +37,7 @@ function Content() {
             <ul className="content__list">              
               {arrBooks.map(val => (
                 <li className="content__item">
-                  <Card title={val.name} price={val.price} imgUrl={val.imgUrl} onClick={() => onClickButton()}/>
+                  <Card title={val.name} price={val.price} imgUrl={val.imgUrl} onClickAdd={() => onClickButton()} onClickLike={() =>  onClickLikeButton()}/>
                 </li>                
               ))}
             </ul>
