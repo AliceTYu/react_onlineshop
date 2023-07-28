@@ -1,19 +1,10 @@
 import React from "react";
 import './Content.scss'
 import Card from "./Card/Card";
-import Cart from "../Basket/Cart/Cart";
 
-const arrBooks = [
-  {name: "Ученик убийцы. Королевский убийца.", price: 977, imgUrl:"/image/books/imgBook01.jpeg"},
-  {name: "Гретель и её бесы", price: 509, imgUrl:"/image/books/imgBook02.jpeg"},
-  {name: "История с кладбищем", price: 660, imgUrl:"/image/books/imgBook03.jpeg"},
-  {name: "Ходячий замок", price: 490, imgUrl:"/image/books/imgBook04.jpeg"},
-  {name: "Академия Стихий. Танец Огня", price: 560, imgUrl:"/image/books/imgBook05.jpg"},
-  {name: "Институт", price: 250, imgUrl:"/image/books/imgBook06.jpg"},
-  {name: "Страна чудес смертников. Том 13", price: 410, imgUrl:"/image/books/imgBook07.jpg"},
-]
+const arrBooks = []
 
-function Content() {
+function Content(props) {
   return <main className="content">
     <div className="container">
         <div className="content__wrap">
@@ -27,7 +18,7 @@ function Content() {
               </div>
             </div>
             <ul className="content__list">              
-              {arrBooks.map(val => (
+              {props.items.map(val => (
                 <li className="content__item">
                   <Card title={val.name} price={val.price} imgUrl={val.imgUrl} />
                 </li>                
