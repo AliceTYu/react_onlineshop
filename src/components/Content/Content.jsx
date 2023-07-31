@@ -6,17 +6,6 @@ import Card from "./Card/Card";
 function Content(props) {
   const [searchValue, setSearchValue] = React.useState('')
 
-  const onAddToCart = (obj) => {
-    axios.post('https://64c3bbf367cfdca3b6603227.mockapi.io/cart', obj)
-    props.setCartItems([...props.cartItems, obj])
-    // props.setCartItems((prev) => [...prev, obj])
-  }
-
-  const onAddToLikes = (obj) => {
-    axios.post('https://64c772a80a25021fde9280b0.mockapi.io/favourites', obj)
-    props.setCartLikes([...props.cartLikes, obj])
-  }
-
   const omChangeSearchInput = (event) => {
     setSearchValue(event.target.value)
   }
@@ -36,9 +25,9 @@ function Content(props) {
             </div>
 
             <ul className="content__list">              
-              {props.items.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase())).map((item) => (
+              {props.items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((item) => (
                 <li className="content__item">
-                  <Card key={item.name} title={item.name} price={item.price} imgUrl={item.imgUrl} onPlus={(obj) => onAddToCart(obj)} onLike={(obj) => onAddToLikes(obj)} cartItems={props.cartItems} cartLikes={props.cartLikes}/>
+                  <Card key={item.name} {...item} onPlus={(obj) => props.onAddToCart(obj)} onLike={(obj) => props.onAddToLikes(obj)} cartItems={props.cartItems} cartLikes={props.cartLikes}/>
                 </li>                
               ))}
             </ul>
