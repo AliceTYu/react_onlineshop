@@ -59,6 +59,38 @@
         }
     }
 
+    &__empty{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex: 1;
+        align-items: center;
+    }
+
+    &__img{
+        margin-bottom: 20px;
+
+        &-pic{
+            width: 150px;
+            height: 150px;
+        }
+    }
+
+    &__titl{
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.2;
+        margin-bottom: 10px;
+    }
+
+    &__txt{
+        text-align: center;
+        font-size: 16px;
+        line-height: 24px;
+        opacity: 0.4;
+        margin-bottom: 40px;
+    }
+
     &__block{
         display: flex;
         justify-content: space-between;
@@ -103,6 +135,13 @@
             color: var(--bg-color);
             font-size: 20px;
             margin-left: 30px;
+        }
+
+        & .rotate{
+            order: 0;
+            transform: rotate(180deg);
+            margin-left: 0;
+            margin-right: 30px;
         }
     }
 

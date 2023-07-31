@@ -12,6 +12,11 @@ function Content(props) {
     // props.setCartItems((prev) => [...prev, obj])
   }
 
+  const onAddToLikes = (obj) => {
+    axios.post('https://64c772a80a25021fde9280b0.mockapi.io/favourites', obj)
+    props.setCartLikes([...props.cartLikes, obj])
+  }
+
   const omChangeSearchInput = (event) => {
     setSearchValue(event.target.value)
   }
@@ -29,10 +34,11 @@ function Content(props) {
                 {searchValue && (<i onClick={() => {setSearchValue('')}} className='bx bx-x content__icon clear'></i>)}
               </div>
             </div>
+
             <ul className="content__list">              
               {props.items.filter((item) => item.name.toLowerCase().includes(searchValue.toLowerCase())).map((item) => (
                 <li className="content__item">
-                  <Card key={item.name} title={item.name} price={item.price} imgUrl={item.imgUrl} onPlus={(obj) => onAddToCart(obj)} onLike={() => console.log("like")}/>
+                  <Card key={item.name} title={item.name} price={item.price} imgUrl={item.imgUrl} onPlus={(obj) => onAddToCart(obj)} onLike={(obj) => onAddToLikes(obj)} cartItems={props.cartItems} cartLikes={props.cartLikes}/>
                 </li>                
               ))}
             </ul>

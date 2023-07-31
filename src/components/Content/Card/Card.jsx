@@ -11,7 +11,7 @@ function Card({title, price, imgUrl, onPlus, onLike}) {
   }
 
   const onClickLike = () => {
-    onLike()
+    onLike({title, price, imgUrl})
     setIsLike(!isLike)
   }
 
@@ -24,6 +24,7 @@ function Card({title, price, imgUrl, onPlus, onLike}) {
           <img className="card__image-pic" src={imgUrl} alt="book" />
         </div>
     </div>
+
     <div className="card__body">
       <div className="card__title">{title}</div>
       <div className="card__block">

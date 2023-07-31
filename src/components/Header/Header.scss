@@ -24,6 +24,8 @@
         flex-direction: row;
         align-items: center;
         column-gap: 15px;
+        text-decoration: none;
+        color: var(--text-color);
     }
 
     &__title{

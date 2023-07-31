@@ -1,11 +1,12 @@
 import React from "react";
 import './Header.scss'
+import { Link } from "react-router-dom";
 
 function Header(props) {
   return <header className="header">
     <div className="container">
         <div className="header__wrap">
-            <div className="header__logo">
+            <Link to="/" className="header__logo">
                 <div className="header__icon">
                     <i className='bx bxs-book-heart'></i>
                 </div>
@@ -13,7 +14,7 @@ function Header(props) {
                     <div className="header__title">fantasy</div>
                     <div className="header__text">Магазин книг</div>
                 </div>
-            </div>
+            </Link>
     
             <div className="header__info">
                 <ul className="header__list">
@@ -23,16 +24,19 @@ function Header(props) {
                             <span className="header__price">1205 руб.</span>
                         </button>
                     </li>
+                    
                     <li className="header__item">
                         <div className="header__icons">
-                        <a className="header__link" href="#"><i className='bx bx-heart' ></i></a>
+                        <Link className="header__link" to="/favorites"><i className='bx bx-heart' ></i></Link>
                         </div>
                     </li>
+
                     <li className="header__item">
                         <div className="header__icons">
-                        <a className="header__link" href="#"><i className='bx bx-user-circle'></i></a>
+                        <Link className="header__link" to="/person"><i className='bx bx-user-circle'></i></Link>
                         </div>
                     </li>
+
                     <li className="header__item">
                         <div className="header__icons">
                         <a className="header__link" href="#"><i className='bx bx-sun' ></i>
