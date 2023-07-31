@@ -1,8 +1,10 @@
 import React from "react";
 import "./Content.scss";
 import Card from "./Card/Card";
+import AppContext from "../../context";
 
-function Content(props) {
+function Content({cartLikes, isLoading, onAddToCart, onAddToLikes}) {
+  const {items, cartItems} = React.useContext(AppContext)
   const [searchValue, setSearchValue] = React.useState("");
 
   const omChangeSearchInput = (event) => {
@@ -10,19 +12,18 @@ function Content(props) {
   };
 
   const renderItems = () => { 
-    const filterItems = props.items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+    const filterItems = items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
     
-    return (props.isLoading ? [...Array(10)] : filterItems).map((item, index) => (
+    return (isLoading ? [...Array(8)] : filterItems).map((item, index) => (
         <li className="content__item">
           <Card
-            key={index}
+            key={item && item.id}
             {...item}
-            onPlus={(obj) => props.onAddToCart(obj)}
-            onLike={(obj) => props.onAddToLikes(obj)}
-            isCart={props.cartItems.some(obj => Number(obj.id) === Number(item.id))}
-            cartItems={props.cartItems}
-            cartLikes={props.cartLikes}
-            isLoading={props.isLoading}
+            onPlus={(obj) => onAddToCart(obj)}
+            onLike={(obj) => onAddToLikes(obj)}
+            cartItems={cartItems}
+            cartLikes={cartLikes}
+            isLoading={isLoading}
           />
         </li>
       ))

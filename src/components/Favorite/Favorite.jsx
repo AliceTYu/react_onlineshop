@@ -1,7 +1,10 @@
 import React from "react";
 import Card from "../Content/Card/Card";
+import AppContext from "../../context.js";
 
-function Favorite(props) {
+function Favorite() {
+  const {cartLikes, onAddToLikes} = React.useContext(AppContext)
+
   return (
     <main className="content">
       <div className="container">
@@ -14,13 +17,14 @@ function Favorite(props) {
           </div>
   
           <ul className="content__list">
-            {props.items.map((item) => (
+            {cartLikes.map((item) => (
               <li className="content__item">
                 <Card
                   key={item.name}
                   {... item}
                   isFavorite={true}
-                  onLike={props.onAddToLikes}
+                  onLike={onAddToLikes}
+                  // onLike={(obj) => onAddToLikes}
                 />
               </li>
             ))}

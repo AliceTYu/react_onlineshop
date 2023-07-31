@@ -72,7 +72,7 @@
 
         &-pic{
             width: 150px;
-            height: 150px;
+            height: 100%;
         }
     }
 
@@ -115,12 +115,12 @@
 
     &__btn{
         font-size: 16px;
-        width: 245px;
+        // width: 245px;
         display: flex;
         justify-content: center;
         align-items: center;
         padding: 18px 0;
-        // width: 100%;
+        width: 100%;
         border-radius: 18px;
         background: #9DD458;
         color: var(--bg-color);
@@ -143,6 +143,15 @@
             transform: rotate(180deg);
             margin-left: 0;
             margin-right: 30px;
+        }
+
+        &:disabled{
+            background: var(--second-text-color);
+            cursor: default;
+
+            &:hover{
+                opacity: 1;
+            }
         }
     }
 

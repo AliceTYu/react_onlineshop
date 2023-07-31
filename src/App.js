@@ -5,6 +5,8 @@ import Basket from "./components/Basket/Basket";
 import Content from "./components/Content/Content";
 import Header from "./components/Header/Header";
 import Favorite from "./components/Favorite/Favorite";
+import AppContext from './context.js'
+
 
 function App() {
   const [items, setItems] = React.useState([])
@@ -21,7 +23,7 @@ function App() {
 
     //  axios
     async function fetchData() {
-      setIsLoading(true)
+      // setIsLoading(true)
 
       const cartResponse = await axios.get('https://64c3bbf367cfdca3b6603227.mockapi.io/cart')
       const favoriteResponse = await axios.get('https://64c772a80a25021fde9280b0.mockapi.io/favourites')
@@ -54,8 +56,9 @@ function App() {
 
   const onAddToLikes = async (obj) => {
     try{
-      if(cartLikes.find(favObj => favObj.id === obj.id)){
+      if(cartLikes.find(favObj => Number(favObj.id) === Number(obj.id))){
       axios.delete(`https://64c772a80a25021fde9280b0.mockapi.io/favourites/${obj.id}`)
+      setCartLikes((prev) => prev.filter(item => Number(item.id) !== Number(obj.id)) )
       } else {
         const { data } = await axios.post('https://64c772a80a25021fde9280b0.mockapi.io/favourites', obj)
         setCartLikes((prev) => [...prev, data])
@@ -66,36 +69,37 @@ function App() {
     }
   }
 
+  const isItemAdded = (id) =>{
+    return cartItems.some(obj => Number(obj.id) === Number(id))
+  }
+
   return (
     <BrowserRouter>
-      <div className="wrapper">
-        {cartOpened && <Basket cartLikes={cartLikes} cartItems={cartItems} onClose={() => setCartOpened(false)} setCartItems={setCartItems} />}
-
-        <div className="wrapper__header">
-          <Header onClickCart={() => setCartOpened(true)} />
+      <AppContext.Provider value={{items, cartItems, cartLikes, isItemAdded, setCartOpened, setCartItems}}>
+        <div className="wrapper">
+          {cartOpened && <Basket cartLikes={cartLikes} cartItems={cartItems} onClose={() => setCartOpened(false)} />}
+  
+          <div className="wrapper__header">
+            <Header onClickCart={() => setCartOpened(true)} />
+          </div>
+  
+          <div className="wrapper__content">
+            <Routes >
+              <Route path="/" element={<Content 
+              setCartItems={setCartItems}
+              onAddToCart={onAddToCart}
+              onAddToLikes={onAddToLikes}
+              isLoading={isLoading}
+              />} />
+  
+              <Route path="/favorites" element={<Favorite />} />
+  
+              <Route path="/orders" element={123} />
+            </Routes >
+  
+          </div>
         </div>
-
-        <div className="wrapper__content">
-          <Routes >
-            <Route path="/" element={<Content 
-            items={items}
-            setCartItems={setCartItems} 
-            cartItems={cartItems}
-            onAddToCart={onAddToCart}
-            onAddToLikes={onAddToLikes}
-            isLoading={isLoading}
-            />} />
-
-            <Route path="/favorites" element={<Favorite 
-            items={cartLikes}
-            onAddToLikes={onAddToLikes}
-            />} />
-
-            <Route path="/orders" element={123} />
-          </Routes >
-
-        </div>
-      </div>
+      </AppContext.Provider>
     </BrowserRouter>
   );
 }

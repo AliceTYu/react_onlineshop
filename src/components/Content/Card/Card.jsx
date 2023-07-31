@@ -1,14 +1,15 @@
 import React from "react";
 import './Card.scss';
 import './Skelet.scss';
+import AppContext from "../../../context";
 
-function Card({id, title, price, imgUrl, onPlus, onLike, isFavorite = false, isCart, isLoading = false}) {
-  const [isAdded, setIsAdded] = React.useState(isCart);
-  const [isLike, setIsLike] = React.useState(isFavorite);
+function Card({id, title, price, imgUrl, onPlus, onLike, isFavorite = false, isLoading = false}) {
+  const { isItemAdded } = React.useContext(AppContext)
+
+  const [isLike, setIsLike] = React.useState(isFavorite)
 
   const onClickAdd = () => {
     onPlus({id, title, price, imgUrl})
-    setIsAdded(!isAdded)
   }
 
   const onClickLike = () => {
@@ -41,8 +42,8 @@ function Card({id, title, price, imgUrl, onPlus, onLike, isFavorite = false, isC
                 <div className="card__text">Цена:</div>
                 <div className="card__price">{price} руб.</div>
             </div>
-            <button className={isAdded ? 'card__btn active' : 'card__btn'} onClick={onClickAdd}>
-              <i className={isAdded ? 'bx bx-check size' : 'bx bx-plus-medical '}></i>
+            <button className={isItemAdded(id) ? 'card__btn active' : 'card__btn'} onClick={onClickAdd}>
+              <i className={isItemAdded(id) ? 'bx bx-check size' : 'bx bx-plus-medical '}></i>
             </button>
         </div>
       </div> </>
