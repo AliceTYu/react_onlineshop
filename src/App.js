@@ -7,10 +7,11 @@ import Header from "./components/Header/Header";
 import Favorite from "./components/Favorite/Favorite";
 
 function App() {
+  const [items, setItems] = React.useState([])
   const [cartOpened, setCartOpened] = React.useState(false)
+  const [isLoading, setIsLoading] = React.useState(true)
   const [cartItems, setCartItems] = React.useState([])
   const [cartLikes, setCartLikes] = React.useState([])
-  const [items, setItems] = React.useState([])
 
   React.useEffect(() => {
     // fetch
@@ -19,17 +20,36 @@ function App() {
     // }).then(json => {setItems(json)})
 
     //  axios
-    axios.get('https://64c3bbf367cfdca3b6603227.mockapi.io/items').then(res => setItems(res.data))
+    async function fetchData() {
+      setIsLoading(true)
 
-    axios.get('https://64c3bbf367cfdca3b6603227.mockapi.io/cart').then(res => setCartItems(res.data))
+      const cartResponse = await axios.get('https://64c3bbf367cfdca3b6603227.mockapi.io/cart')
+      const favoriteResponse = await axios.get('https://64c772a80a25021fde9280b0.mockapi.io/favourites')
+      const itemsResponse =  await axios.get('https://64c3bbf367cfdca3b6603227.mockapi.io/items')
 
-    axios.get('https://64c772a80a25021fde9280b0.mockapi.io/favourites').then(res => setCartLikes(res.data))
+      setIsLoading(false)
+
+      setCartItems(cartResponse.data)
+      setCartLikes(favoriteResponse.data)
+      setItems(itemsResponse.data)
+    }
+    fetchData()
   }, [])
 
   const onAddToCart = (obj) => {
-    axios.post('https://64c3bbf367cfdca3b6603227.mockapi.io/cart', obj)
-    setCartItems([...cartItems, obj])
-    // props.setCartItems((prev) => [...prev, obj])
+    try {
+      console.log(obj)
+      if(cartItems.find((item) => Number(item.id) === Number(obj.id))){
+        axios.delete(`https://64c772a80a25021fde9280b0.mockapi.io/cart/${obj.id}`)
+        setCartItems((prev) => prev.filter(item => Number(item.id) !== Number(obj.id)))
+      } else {
+        axios.post('https://64c3bbf367cfdca3b6603227.mockapi.io/cart', obj)
+        // setCartItems([...cartItems, obj])
+        setCartItems((prev) => [...prev, obj])
+      }
+    } catch (error) {
+      alert("Не удалось добавить в корзину!")
+    }
   }
 
   const onAddToLikes = async (obj) => {
@@ -49,7 +69,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="wrapper">
-        {cartOpened && <Basket cartItems={cartItems} onClose={() => setCartOpened(false)} setCartItems={setCartItems} />}
+        {cartOpened && <Basket cartLikes={cartLikes} cartItems={cartItems} onClose={() => setCartOpened(false)} setCartItems={setCartItems} />}
 
         <div className="wrapper__header">
           <Header onClickCart={() => setCartOpened(true)} />
@@ -58,20 +78,20 @@ function App() {
         <div className="wrapper__content">
           <Routes >
             <Route path="/" element={<Content 
-            items={items} 
+            items={items}
             setCartItems={setCartItems} 
             cartItems={cartItems}
             onAddToCart={onAddToCart}
             onAddToLikes={onAddToLikes}
+            isLoading={isLoading}
             />} />
 
             <Route path="/favorites" element={<Favorite 
-            items={cartLikes} 
-            // onAddToCart={onAddToCart}
+            items={cartLikes}
             onAddToLikes={onAddToLikes}
             />} />
 
-            <Route path="/person" element={123} />
+            <Route path="/orders" element={123} />
           </Routes >
 
         </div>

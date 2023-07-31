@@ -22,7 +22,7 @@ function Basket({onClose, cartItems, setCartItems}) {
                 <>
                     <ul className="basket__list">
                         {cartItems.map((val) => (
-                            <li className="basket__item"><Cart title={val.title} price={val.price} imgUrl={val.imgUrl} id={val.id} onRemoveFromCart={onRemoveFromCart}/></li>
+                            <li key={val.id} className="basket__item"><Cart title={val.title} price={val.price} imgUrl={val.imgUrl} id={val.id} onRemoveFromCart={onRemoveFromCart}/></li>
                         ))}
                     </ul>
                     <div className="basket__botton">

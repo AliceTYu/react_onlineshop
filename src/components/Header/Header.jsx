@@ -33,7 +33,7 @@ function Header(props) {
 
                     <li className="header__item">
                         <div className="header__icons">
-                        <Link className="header__link" to="/person"><i className='bx bx-user-circle'></i></Link>
+                        <Link className="header__link" to="/orders"><i className='bx bx-user-circle'></i></Link>
                         </div>
                     </li>
 
