@@ -7,7 +7,7 @@ function Header(props) {
         <div className="header__wrap">
             <div className="header__logo">
                 <div className="header__icon">
-                    <i class='bx bxs-book-heart'></i>
+                    <i className='bx bxs-book-heart'></i>
                 </div>
                 <div className="header__content">
                     <div className="header__title">fantasy</div>
@@ -19,23 +19,23 @@ function Header(props) {
                 <ul className="header__list">
                     <li className="header__item">
                         <button className="header__link" onClick={props.onClickCart}>
-                            <div><i class='bx bxs-cart'></i></div>
+                            <div><i className='bx bxs-cart'></i></div>
                             <span className="header__price">1205 руб.</span>
                         </button>
                     </li>
                     <li className="header__item">
                         <div className="header__icons">
-                        <a className="header__link" href="#"><i class='bx bx-heart' ></i></a>
+                        <a className="header__link" href="#"><i className='bx bx-heart' ></i></a>
                         </div>
                     </li>
                     <li className="header__item">
                         <div className="header__icons">
-                        <a className="header__link" href="#"><i class='bx bx-user-circle'></i></a>
+                        <a className="header__link" href="#"><i className='bx bx-user-circle'></i></a>
                         </div>
                     </li>
                     <li className="header__item">
                         <div className="header__icons">
-                        <a className="header__link" href="#"><i class='bx bx-sun' ></i>
+                        <a className="header__link" href="#"><i className='bx bx-sun' ></i>
                         {/* <i class='bx bx-moon' ></i> */}
                         </a>
                         </div>

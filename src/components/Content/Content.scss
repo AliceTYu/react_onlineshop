@@ -25,6 +25,10 @@
         font-size: 16px;
         color: var(--text-color-gray);
         margin-right: 15px;
+
+        &.clear{
+            cursor: pointer;
+        }
     }
 
     &__inp{

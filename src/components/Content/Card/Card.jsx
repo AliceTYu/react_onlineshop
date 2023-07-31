@@ -18,7 +18,7 @@ function Card({title, price, imgUrl, onPlus, onLike}) {
   return <article className="card">
     <div className="card__image">
       <button className={isLike ? 'card__like active' : 'card__like'} onClick={onClickLike}>
-        <i class='bx bx-heart' ></i>
+        <i className='bx bx-heart' ></i>
       </button>
         <div className="card__box">
           <img className="card__image-pic" src={imgUrl} alt="book" />
