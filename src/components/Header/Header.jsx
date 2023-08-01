@@ -46,15 +46,6 @@ function Header(props) {
                   </Link>
                 </div>
               </li>
-
-              <li className="header__item">
-                <div className="header__icons">
-                  <a className="header__link" href="#">
-                    <i className="bx bx-sun"></i>
-                    {/* <i class='bx bx-moon' ></i> */}
-                  </a>
-                </div>
-              </li>
             </ul>
           </div>
         </div>

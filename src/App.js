@@ -17,38 +17,40 @@ function App() {
   const [cartLikes, setCartLikes] = React.useState([])
 
   React.useEffect(() => {
-    // fetch
-    //   fetch('https://64c3bbf367cfdca3b6603227.mockapi.io/items').then(res => {
-    //   return res.json()
-    // }).then(json => {setItems(json)})
-
-    //  axios
     async function fetchData() {
-      // setIsLoading(true)
+      try {
+        const [cartResponse, favoriteResponse, itemsResponse] = await Promise.all([axios.get('https://64c3bbf367cfdca3b6603227.mockapi.io/cart'), axios.get('https://64c772a80a25021fde9280b0.mockapi.io/favourites'), axios.get('https://64c3bbf367cfdca3b6603227.mockapi.io/items')])
 
-      const cartResponse = await axios.get('https://64c3bbf367cfdca3b6603227.mockapi.io/cart')
-      const favoriteResponse = await axios.get('https://64c772a80a25021fde9280b0.mockapi.io/favourites')
-      const itemsResponse =  await axios.get('https://64c3bbf367cfdca3b6603227.mockapi.io/items')
+        setIsLoading(false)
 
-      setIsLoading(false)
-
-      setCartItems(cartResponse.data)
-      setCartLikes(favoriteResponse.data)
-      setItems(itemsResponse.data)
+        setCartItems(cartResponse.data)
+        setCartLikes(favoriteResponse.data)
+        setItems(itemsResponse.data)
+      } catch (error) {
+        alert('Ошибка при запросе данных')
+      }
     }
     fetchData()
   }, [])
 
-  const onAddToCart = (obj) => {
+  const onAddToCart = async (obj) => {
     try {
-      console.log(obj)
-      if(cartItems.find((item) => Number(item.id) === Number(obj.id))){
-        axios.delete(`https://64c772a80a25021fde9280b0.mockapi.io/cart/${obj.id}`)
-        setCartItems((prev) => prev.filter(item => Number(item.id) !== Number(obj.id)))
+      const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id))
+      if(findItem){
+        setCartItems((prev) => prev.filter(item => Number(item.parentId) !== Number(obj.id)))
+        await axios.delete(`https://64c772a80a25021fde9280b0.mockapi.io/cart/${findItem.id}`)
       } else {
-        axios.post('https://64c3bbf367cfdca3b6603227.mockapi.io/cart', obj)
-        // setCartItems([...cartItems, obj])
         setCartItems((prev) => [...prev, obj])
+        const {data} = await axios.post('https://64c3bbf367cfdca3b6603227.mockapi.io/cart', obj)
+        setCartItems((prev) => [...prev.map(item => {
+          if (item.parentId == data.parentId){
+            return {
+              ...item,
+              id: data.id
+            }
+          }
+          return
+        })])
       }
     } catch (error) {
       alert("Не удалось добавить в корзину!")
@@ -58,8 +60,8 @@ function App() {
   const onAddToLikes = async (obj) => {
     try{
       if(cartLikes.find(favObj => Number(favObj.id) === Number(obj.id))){
-      axios.delete(`https://64c772a80a25021fde9280b0.mockapi.io/favourites/${obj.id}`)
-      setCartLikes((prev) => prev.filter(item => Number(item.id) !== Number(obj.id)) )
+        axios.delete(`https://64c772a80a25021fde9280b0.mockapi.io/favourites/${obj.id}`)
+        setCartLikes((prev) => prev.filter(item => Number(item.id) !== Number(obj.id)) )
       } else {
         const { data } = await axios.post('https://64c772a80a25021fde9280b0.mockapi.io/favourites', obj)
         setCartLikes((prev) => [...prev, data])
@@ -71,7 +73,7 @@ function App() {
   }
 
   const isItemAdded = (id) =>{
-    return cartItems.some(obj => Number(obj.id) === Number(id))
+    return cartItems.some(obj => Number(obj.parentId) === Number(id))
   }
 
   return (
@@ -81,17 +83,13 @@ function App() {
         <div className="wrapper">
           {cartOpened && <Basket cartLikes={cartLikes} cartItems={cartItems} onClose={() => setCartOpened(false)}  />}
   
-          <div className="wrapper__header">
+          <div className="wrapper__header"> 
             <Header onClickCart={() => setCartOpened(true)} />
           </div>
   
           <div className="wrapper__content">
             <Routes >
-              <Route path="/" element={<Content 
-              // setCartItems={setCartItems}
-              // onAddToCart={onAddToCart}
-              // onAddToLikes={onAddToLikes}
-              />} />
+              <Route path="/" element={<Content />} />
   
               <Route path="/favorites" element={<Favorite />} />
   

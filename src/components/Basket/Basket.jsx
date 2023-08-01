@@ -13,8 +13,12 @@ function Basket() {
   const { cartItems, setCartItems, totalPrice, salePrice, finishPrice } = useCart()
 
   const onRemoveFromCart = (id) => {
-    axios.delete(`https://64c3bbf367cfdca3b6603227.mockapi.io/cart/${id}`);
-    setCartItems((prev) => prev.filter((item) => item.id !== id));
+    try {
+      axios.delete(`https://64c3bbf367cfdca3b6603227.mockapi.io/cart/${id}`);
+      setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));
+    } catch (error) {
+      alert('Ошибка при удалении из корзины')
+    }
   };
 
   const [isOrderComplete, setIsOrderComplete] = React.useState(false)
@@ -96,7 +100,7 @@ function Basket() {
           ) : (
             <Info
               title={isOrderComplete ? "Заказ оформлен!" : "Корзина пустая"}
-              text={isOrderComplete ? `Ваш заказ ${isOrderId} скоро будет подтвержден!` : "Добавьте хотя бы один товар, чтобы сделать заказ."}
+              text={isOrderComplete ? `Ваш заказ ${isOrderId} скоро будет доставлен!` : "Добавьте хотя бы один товар, чтобы сделать заказ."}
               btnTitle="Вернуться назад"
               imgURL={isOrderComplete ? "./image/completed.jpg" : "./image/cart.png"}
             />

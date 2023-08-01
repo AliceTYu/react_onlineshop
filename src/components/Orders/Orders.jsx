@@ -25,7 +25,7 @@ function Orders() {
     <main className="content">
       <div className="container">
         <div className="content__wrap">
-          {/* {cartLikes.length > 0 ? ( */}
+          {/* {order.length > 0 ? ( */}
           <>
             <div className="content__top">
               <div className="content__title">Мои заказы</div>

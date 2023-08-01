@@ -22,9 +22,9 @@ function Favorite() {
                 <Card
                   key={item.name}
                   {... item}
-                  isFavorite={true}
                   onPlus={(obj) => onAddToCart(obj)}
                   onLike={(obj) => onAddToLikes(obj)}
+                  isFavorite={true}
                 />
               </li>
             ))}

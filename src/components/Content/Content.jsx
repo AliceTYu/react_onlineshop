@@ -3,7 +3,7 @@ import "./Content.scss";
 import Card from "./Card/Card";
 import AppContext from "../../context";
 
-function Content({cartLikes}) {
+function Content() {
   const {items, cartItems, isLoading, onAddToCart, onAddToLikes} = React.useContext(AppContext)
   const [searchValue, setSearchValue] = React.useState("");
 
@@ -22,8 +22,7 @@ function Content({cartLikes}) {
             onPlus={(obj) => onAddToCart(obj)}
             onLike={(obj) => onAddToLikes(obj)}
             cartItems={cartItems}
-            cartLikes={cartLikes}
-            isLoading={isLoading}
+            isLike={isLoading}
           />
         </li>
       ))

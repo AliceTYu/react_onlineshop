@@ -8,12 +8,15 @@ function Card({id, title, price, imgUrl, onPlus, onLike, isFavorite = false, isL
 
   const [isLike, setIsLike] = React.useState(isFavorite)
 
+  const sale = 5
+  const obj = {id, parentId: id, title, price, imgUrl, totalPrice: price*(100-sale)/100}
+
   const onClickAdd = () => {
-    onPlus({id, title, price, imgUrl})
+    onPlus(obj)
   }
 
   const onClickLike = () => {
-    onLike({id, title, price, imgUrl})
+    onLike(obj)
     setIsLike(!isLike)
   }
 
