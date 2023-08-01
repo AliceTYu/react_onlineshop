@@ -4,11 +4,13 @@ import "./Basket.scss";
 import Cart from "./Cart/Cart";
 import Info from "../Info/Info";
 import AppContext from "../../context";
+import { useCart } from "../../hooks/useCart";
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
 function Basket() {
-  const { setCartOpened, setCartItems, cartItems } = React.useContext(AppContext);
+  const { setCartOpened } = React.useContext(AppContext)
+  const { cartItems, setCartItems, totalPrice, salePrice, finishPrice } = useCart()
 
   const onRemoveFromCart = (id) => {
     axios.delete(`https://64c3bbf367cfdca3b6603227.mockapi.io/cart/${id}`);
@@ -72,12 +74,16 @@ function Basket() {
               </ul>
               <div className="basket__botton">
                 <div className="basket__block">
-                  <div className="basket__text">Итого:</div>
-                  <div className="basket__price">1 975 руб.</div>
+                  <div className="basket__text">Цена без скидки:</div>
+                  <div className="basket__price">{totalPrice} руб.</div>
                 </div>
                 <div className="basket__block">
-                  <div className="basket__text">Налог 5%:</div>
-                  <div className="basket__price">85 руб.</div>
+                  <div className="basket__text">Скидка 5%:</div>
+                  <div className="basket__price">{salePrice} руб.</div>
+                </div>
+                <div className="basket__block">
+                  <div className="basket__text">Итого:</div>
+                  <div className="basket__price">{finishPrice} руб.</div>
                 </div>
                 <div className="basket__block">
                   <button disabled={isLoading} className="basket__btn" onClick={onClickOrder}>
