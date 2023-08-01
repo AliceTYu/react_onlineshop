@@ -3,8 +3,8 @@ import "./Content.scss";
 import Card from "./Card/Card";
 import AppContext from "../../context";
 
-function Content({cartLikes, isLoading, onAddToCart, onAddToLikes}) {
-  const {items, cartItems} = React.useContext(AppContext)
+function Content({cartLikes}) {
+  const {items, cartItems, isLoading, onAddToCart, onAddToLikes} = React.useContext(AppContext)
   const [searchValue, setSearchValue] = React.useState("");
 
   const omChangeSearchInput = (event) => {

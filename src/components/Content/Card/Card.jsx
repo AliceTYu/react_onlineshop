@@ -28,9 +28,9 @@ function Card({id, title, price, imgUrl, onPlus, onLike, isFavorite = false, isL
             <div className="skelet__right"></div>
         </div>
       </div> : <><div className="card__image">
-        <button className={isLike ? 'card__like active' : 'card__like'} onClick={onClickLike}>
+        {onLike && <button className={isLike ? 'card__like active' : 'card__like'} onClick={onClickLike}>
           <i className='bx bx-heart' ></i>
-        </button>
+        </button>}
           <div className="card__box">
             <img className="card__image-pic" src={imgUrl} alt="book" />
           </div>
@@ -42,9 +42,9 @@ function Card({id, title, price, imgUrl, onPlus, onLike, isFavorite = false, isL
                 <div className="card__text">Цена:</div>
                 <div className="card__price">{price} руб.</div>
             </div>
-            <button className={isItemAdded(id) ? 'card__btn active' : 'card__btn'} onClick={onClickAdd}>
+            {onPlus && <button className={isItemAdded(id) ? 'card__btn active' : 'card__btn'} onClick={onClickAdd}>
               <i className={isItemAdded(id) ? 'bx bx-check size' : 'bx bx-plus-medical '}></i>
-            </button>
+            </button>}
         </div>
       </div> </>
     }

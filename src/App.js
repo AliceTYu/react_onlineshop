@@ -6,6 +6,7 @@ import Content from "./components/Content/Content";
 import Header from "./components/Header/Header";
 import Favorite from "./components/Favorite/Favorite";
 import AppContext from './context.js'
+import Orders from "./components/Orders/Orders";
 
 
 function App() {
@@ -75,9 +76,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      <AppContext.Provider value={{items, cartItems, cartLikes, isItemAdded, setCartOpened, setCartItems}}>
+      <AppContext.Provider value={{items, cartItems, cartLikes, isItemAdded, setCartOpened, setCartItems, onAddToCart, onAddToLikes}}>
+
         <div className="wrapper">
-          {cartOpened && <Basket cartLikes={cartLikes} cartItems={cartItems} onClose={() => setCartOpened(false)} />}
+          {cartOpened && <Basket cartLikes={cartLikes} cartItems={cartItems} onClose={() => setCartOpened(false)}  />}
   
           <div className="wrapper__header">
             <Header onClickCart={() => setCartOpened(true)} />
@@ -86,15 +88,14 @@ function App() {
           <div className="wrapper__content">
             <Routes >
               <Route path="/" element={<Content 
-              setCartItems={setCartItems}
-              onAddToCart={onAddToCart}
-              onAddToLikes={onAddToLikes}
-              isLoading={isLoading}
+              // setCartItems={setCartItems}
+              // onAddToCart={onAddToCart}
+              // onAddToLikes={onAddToLikes}
               />} />
   
               <Route path="/favorites" element={<Favorite />} />
   
-              <Route path="/orders" element={123} />
+              <Route path="/orders" element={<Orders/>} />
             </Routes >
   
           </div>

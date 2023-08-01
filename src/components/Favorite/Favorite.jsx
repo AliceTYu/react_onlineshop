@@ -3,7 +3,7 @@ import Card from "../Content/Card/Card";
 import AppContext from "../../context.js";
 
 function Favorite() {
-  const {cartLikes, onAddToLikes} = React.useContext(AppContext)
+  const {cartLikes, onAddToLikes, onAddToCart} = React.useContext(AppContext)
 
   return (
     <main className="content">
@@ -23,8 +23,8 @@ function Favorite() {
                   key={item.name}
                   {... item}
                   isFavorite={true}
-                  onLike={onAddToLikes}
-                  // onLike={(obj) => onAddToLikes}
+                  onPlus={(obj) => onAddToCart(obj)}
+                  onLike={(obj) => onAddToLikes(obj)}
                 />
               </li>
             ))}
